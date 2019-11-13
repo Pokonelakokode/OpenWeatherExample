@@ -1,0 +1,57 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js install
+
+PATH: 
+  F:\sites\big-fish-test\node_modules\.bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\PuTTY\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Program Files (x86)\Yarn\bin\;C:\Users\silen\AppData\Local\Microsoft\WindowsApps;C:\Users\silen\AppData\Roaming\npm;C:\Users\silen\AppData\Local\Yarn\bin;;C:\Users\silen\AppData\Local\Programs\Microsoft VS Code\bin
+
+Yarn version: 
+  1.17.3
+
+Node version: 
+  10.16.2
+
+Platform: 
+  win32 x64
+
+Trace: 
+  SyntaxError: F:\sites\big-fish-test\package.json: Unexpected token } in JSON at position 76
+      at JSON.parse (<anonymous>)
+      at C:\Program Files (x86)\Yarn\lib\cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (C:\Program Files (x86)\Yarn\lib\cli.js:304:30)
+      at C:\Program Files (x86)\Yarn\lib\cli.js:315:13
+
+npm manifest: 
+  {
+    "dependencies": {
+      "react": "^16.9.0",
+      "react-dom": "^16.9.0",
+    },
+    "scripts": {
+      "start": "webpack-dev-server --config webpack.common.js",
+      "build-prod": "webpack -p --config webpack.common.js --mode production",
+    },
+    "devDependencies": {
+      "@types/react": "^16.9.2",
+      "@types/react-dom": "^16.9.0",
+      "css-loader": "^3.2.0",
+      "html-webpack-plugin": "^3.2.0",
+      "html-webpack-template": "^6.2.0",
+      "lodash": "^4.17.15",
+      "node-sass": "^4.12.0",
+      "sass-loader": "^8.0.0",
+      "source-map-loader": "^0.2.4",
+      "style-loader": "^1.0.0",
+      "ts-loader": "^6.1.2",
+      "typescript": "^3.6.3",
+      "webpack": "^4.40.2",
+      "webpack-cli": "^3.3.9",
+      "webpack-dev-server": "^3.8.1"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
