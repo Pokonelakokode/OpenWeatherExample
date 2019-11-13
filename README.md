@@ -1,6 +1,6 @@
-#Open Weather Example
+# Open Weather Example
 
-##Install
+## Install
 
 - `npm install` / `yarn install`
 - Create a .env file in the root and add your Open Weather API key like this.  
