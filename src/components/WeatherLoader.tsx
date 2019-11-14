@@ -1,15 +1,13 @@
 import * as React from "react";
 import {useEffect, useState} from "react";
 import CurrentWeather from "./CurrentWeather";
+import { ILocation } from "../types";
+import ForecastWeather from "./ForecastWeather";
 
 interface IProps {
     API_KEY?:string
 }
 
-export interface ILocation {
-    longitude: number,
-    latitude: number
-}
 
 const WeatherLoader: React.FC<IProps> = ({API_KEY}) => {
     if (!API_KEY) return <h1>YOU HAVE TO PROVIDE AN API KEY FIRST</h1>;
@@ -22,9 +20,8 @@ const WeatherLoader: React.FC<IProps> = ({API_KEY}) => {
     },[]);
     return (
         <div>
-            {/*<p>LONGITUDE: {state.longitude}</p>*/}
-            {/*<p>LATITUDE: {state.latitude}</p>*/}
             <CurrentWeather API_KEY={API_KEY} location={state}/>
+            <ForecastWeather API_KEY={API_KEY} location={state}/>
         </div>
     )
 };

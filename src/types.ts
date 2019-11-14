@@ -1,4 +1,55 @@
-export type ILocalStores = "CurrentWeather"
+export type ILocalStores = "CurrentWeather" | "ForecastWeather"
+export interface ILocation {
+    longitude: number,
+    latitude: number
+}
+
+export interface IForecastWeather {
+    timeStamp: number,
+    timezone: number,
+    country: string,
+    city: {
+        id: number,
+        name: string,
+        coord: {
+            lat: number,
+            lon: number
+        }
+        country: string,
+        timezone: number
+    }
+    cnt: number,
+    list: {
+        dt: number,
+        main: {
+            temp: number,
+            temp_min: number,
+            temp_max: number,
+            pressure: number,
+            humidity: number
+        }
+        weather: {
+            id: number,
+            main: string,
+            description: string,
+            icon: string
+        }[],
+        clouds: {
+            all: number
+        },
+        wind: {
+            speed: number,
+            deg: number
+        },
+        rain: {
+            "3h": number
+        }
+        snow: {
+            "3h": number
+        },
+        dt_txt: number
+    }[]
+}
 
 export type IWeatherAPITypes = "weather" | "forecast"
 

@@ -1,24 +1,31 @@
 * {
   font-family: 'Montserrat', sans-serif;
 }
+#app{
+}
 #Current-Weather {
+  width: 100%;
   border-radius: 4px;
   background-color: rgba(99,174,255,0.76);
   display: inline-block;
   width: 100%;
   .header {
-    height: 30px;
-    display: block;
+    display: flex;
+    width: 100%;
     border-radius: 4px;
     background-color: #8184f7;
-    padding: 0 5px;
-    h4 {
-      margin: 5px 0;
-      width: 50%;
+    div {
       display: inline-block;
+      width: 50%;
+
+    }
+    h4 {
+      margin: 5px 5px;
+
     }
     .location {
-      text-align: left
+      text-align: left;
+      float: left
     }
     .updated {
       text-align: right;
@@ -27,16 +34,13 @@
       }
     }
   }
-
   .body {
-    display: table;
-    margin: auto;
+    display: flex;
+    flex-flow: row wrap;
     text-align: center;
   }
-
 }
 .weather-section{
-  display: inline-block;
   margin: 10px auto;
   width: 250px;
   section {
@@ -45,21 +49,4 @@
     float: left;
     width: 33%
   }
-  &.temperature{
-
-    .temp {
-      text-align: center;
-      display: inline-block;
-      float: left;
-      width: 33%
-    }
-  }
-  &.wind {
-    width: 250px;
-
-  }
-  h4 {
-    text-align: center;
-  }
-
 }

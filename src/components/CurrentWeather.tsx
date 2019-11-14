@@ -1,8 +1,7 @@
 import * as React from "react";
 import {useEffect, useState} from "react";
-import {getCurrentWeather, loadFromStorage, saveToStorage} from "../utils";
-import {ILocation} from "./WeatherLoader";
-import {ICurrentWeather} from "../types";
+import {getWeather, loadFromStorage, saveToStorage} from "../utils";
+import {ICurrentWeather, ILocation} from "../types";
 import Temperature from "./Temperature";
 import Wind from "./Wind";
 import Rain from "./Rain";
@@ -18,8 +17,8 @@ interface IProps {
 const CurrentWeather: React.FC<IProps> = ({location, API_KEY}) => {
     const [state, setState] = useState<ICurrentWeather | null>();
     const weatherData = loadFromStorage('CurrentWeather');
-    const _getCurrentWeather = () => {
-        getCurrentWeather(location.longitude, location.latitude, API_KEY,"weather")
+    const getCurrentWeather = () => {
+        getWeather<ICurrentWeather>(location.longitude, location.latitude, API_KEY,"weather")
             .then(data => {
                 data = saveToStorage('CurrentWeather', data);
                 setState(data)
@@ -34,15 +33,21 @@ const CurrentWeather: React.FC<IProps> = ({location, API_KEY}) => {
         if (weatherData) {
             setState(weatherData)
         } else {
-            _getCurrentWeather()
+            getCurrentWeather()
         }
     }, []);
     if (!state) return <div>LOADING</div>;
     return (
-        <div id="Current-Weather">
+        <div id="Current-Weather" >
             <div className="header">
-                <h4 className="location">{state.name} - {state.sys.country}</h4>
-                <Updater updater={_getCurrentWeather} timeStamp={state.timeStamp}/>
+                <div className="location">
+                    <h4 >{state.name} - {state.sys.country}</h4>
+                </div>
+                <div className="updated">
+                    <Updater updater={getCurrentWeather} timeStamp={state.timeStamp}/>
+                </div>
+
+
             </div>
             <div className="body">
 

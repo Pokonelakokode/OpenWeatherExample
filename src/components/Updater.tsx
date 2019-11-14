@@ -14,7 +14,7 @@ const Updater: React.FC<IProps> = ({updater,timeStamp}) => {
         return () => clearInterval(update)
     },[timeStamp])
     return (
-        <h4 className="updated">Last updated: {state}
+        <h4 >Last updated: {state}
             <span onClick={updater}> ↺</span>
         </h4>
     )

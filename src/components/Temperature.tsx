@@ -10,18 +10,18 @@ const Temperature: React.FC<IProps> = ({temp,temp_min,temp_max}) => {
     return (
         <div className="weather-section temperature">
             <h4>Temperature</h4>
-            <div className="temp">
+            <section>
                 <h5>Minimum</h5>
                 <p>{temp_min} °C</p>
-            </div>
-            <div className="temp">
+            </section>
+            <section>
                 <h5>Current</h5>
                 <p>{temp} °C</p>
-            </div>
-            <div className="temp">
+            </section>
+            <section>
                 <h5>Maximum</h5>
                 <p>{temp_max} °C</p>
-            </div>
+            </section>
         </div>
     )
 };
