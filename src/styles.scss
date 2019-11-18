@@ -47,6 +47,9 @@
   display: flex;
   overflow-x: auto;
   text-align: center;
+  .hour {
+    flex-grow: 1;
+  }
 }
 
 .days {

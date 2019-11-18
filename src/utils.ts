@@ -70,3 +70,7 @@ export function mapToDays(weatherList:IForecastData[]) {
         return acc
     },{})
 }
+
+export function convert24To12Format(hour:number) {
+    return `${hour%12 === 0 ? 12 : hour%12} ${hour >= 12 ? 'PM' : 'AM'}`
+}
