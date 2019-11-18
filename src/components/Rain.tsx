@@ -8,7 +8,6 @@ interface IProps {
 }
 
 const Rain: React.FC<IProps> = (props) => {
-    if(!props.rain["1h"] && !props.rain["3h"]) return null;
     return (
         <div className="weather-section">
             <h4>Rain</h4>

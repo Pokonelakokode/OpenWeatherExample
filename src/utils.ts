@@ -1,4 +1,4 @@
-import {ILocalStores, ICurrentWeather, IWeatherAPITypes} from "./types";
+import {ILocalStores,  IWeatherAPITypes, IForecastData} from "./types";
 
 export function getWeather<T>(lon:number, lat:number, key:string, type:IWeatherAPITypes):Promise<T> {
     return new Promise((resolve,reject) => {
@@ -45,4 +45,28 @@ export function loadFromStorage(key:ILocalStores) {
     else {
         return null
     }
+}
+
+export function mapToDays(weatherList:IForecastData[]) {
+    return weatherList.reduce((acc:{[key: string]: any},weather) => {
+        const date = new Date(weather.dt_txt).getDate();
+        acc[date] = acc[date] || {};
+        acc[date]["weatherData"] = acc[date]["weatherData"] || [];
+        acc[date]["sum"] = acc[date]["sum"] || {
+            temp_min: weather.main.temp_min,
+            temp_max: weather.main.temp_max,
+            humidity_min: weather.main.humidity,
+            humidity_max: weather.main.humidity,
+            pressure_min: weather.main.pressure,
+            pressure_max: weather.main.pressure,
+        };
+        acc[date]["sum"]["temp_min"] = weather.main.temp_min < acc[date]["sum"]["temp_min"] ? weather.main.temp_min : acc[date]["sum"]["temp_min"];
+        acc[date]["sum"]["temp_max"] = weather.main.temp_max > acc[date]["sum"]["temp_max"] ? weather.main.temp_max : acc[date]["sum"]["temp_max"];
+        acc[date]["sum"]["humidity_min"] = weather.main.humidity < acc[date]["sum"]["humidity_min"] ? weather.main.humidity : acc[date]["sum"]["humidity_min"];
+        acc[date]["sum"]["humidity_max"] = weather.main.humidity > acc[date]["sum"]["humidity_max"] ? weather.main.humidity : acc[date]["sum"]["humidity_max"];
+        acc[date]["sum"]["pressure_min"] = weather.main.pressure < acc[date]["sum"]["pressure_min"] ? weather.main.pressure : acc[date]["sum"]["pressure_min"];
+        acc[date]["sum"]["pressure_max"] = weather.main.pressure > acc[date]["sum"]["pressure_max"] ? weather.main.pressure : acc[date]["sum"]["pressure_max"];
+        acc[date]["weatherData"].push(weather);
+        return acc
+    },{})
 }

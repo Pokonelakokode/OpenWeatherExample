@@ -26,7 +26,7 @@ const Wind: React.FC<IProps> = ({speed,deg,humidity,pressure}) => {
                     <path fill="#5e9c76"
         d="M45,5v49v1h1h13.586L40,74.586L20.414,55H34h1v-1V5H45 M46,4H34v50H18l22,22l22-22H46V4L46,4z"/>
                 </svg>
-                <p>{speed} m/s</p>
+                <p>{(speed * 3.6).toFixed(1)} km/h</p>
             </section>
             <section>
                 <h5>Humidity</h5>

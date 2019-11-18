@@ -8,36 +8,66 @@
   border-radius: 4px;
   background-color: rgba(99,174,255,0.76);
   display: inline-block;
+
+}
+.header {
+  display: flex;
+  flex-flow: row wrap;
   width: 100%;
-  .header {
-    display: flex;
-    width: 100%;
-    border-radius: 4px;
-    background-color: #8184f7;
-    div {
-      display: inline-block;
-      width: 50%;
+  border-radius: 4px;
+  background-color: #8184f7;
+  & > div, & > h4 {
+    width: 33%;
+  }
+  h4 {
+    margin: 5px 5px;
 
-    }
-    h4 {
-      margin: 5px 5px;
-
-    }
-    .location {
-      text-align: left;
-      float: left
-    }
-    .updated {
-      text-align: right;
-      span {
-        cursor: pointer;
-      }
+  }
+  .location {
+    //text-align: left;
+    //float: left
+  }
+  .title {
+    text-align: center;
+  }
+  .updated {
+    text-align: right;
+    float: right;
+    span {
+      cursor: pointer;
     }
   }
-  .body {
-    display: flex;
-    flex-flow: row wrap;
-    text-align: center;
+}
+.body {
+  display: flex;
+  flex-flow: row wrap;
+  text-align: center;
+}
+.selected-day {
+  display: flex;
+  overflow-x: auto;
+  text-align: center;
+}
+
+.days {
+  display: flex;
+  overflow-x: auto;
+  .day-sum {
+    &.selected {
+      background-color: #8184f7;
+    }
+    table {
+      margin: auto
+    }
+    h4 {
+      text-align: center;
+    }
+    margin: auto;
+    flex-grow: 1;
+    div {
+      width: 33%;
+      display: inline-block;
+    }
   }
 }
 .weather-section{

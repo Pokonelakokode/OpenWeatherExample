@@ -12,9 +12,9 @@ const Updater: React.FC<IProps> = ({updater,timeStamp}) => {
     useEffect(() => {
         const update = setInterval(() => setState(calculateDeltaT(timeStamp)),1000);
         return () => clearInterval(update)
-    },[timeStamp])
+    },[timeStamp]);
     return (
-        <h4 >Last updated: {state}
+        <h4 className="updated">Last updated: {state}
             <span onClick={updater}> ↺</span>
         </h4>
     )

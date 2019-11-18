@@ -18,17 +18,17 @@ const CurrentWeather: React.FC<IProps> = ({location, API_KEY}) => {
     const [state, setState] = useState<ICurrentWeather | null>();
     const weatherData = loadFromStorage('CurrentWeather');
     const getCurrentWeather = () => {
-        getWeather<ICurrentWeather>(location.longitude, location.latitude, API_KEY,"weather")
+        getWeather<ICurrentWeather>(location.longitude, location.latitude, API_KEY, "weather")
             .then(data => {
                 data = saveToStorage('CurrentWeather', data);
                 setState(data)
             })
-            .catch(error => {
+            .catch(() => {
                 if (weatherData) {
                     setState(weatherData)
                 }
             })
-    }
+    };
     useEffect(() => {
         if (weatherData) {
             setState(weatherData)
@@ -38,10 +38,13 @@ const CurrentWeather: React.FC<IProps> = ({location, API_KEY}) => {
     }, []);
     if (!state) return <div>LOADING</div>;
     return (
-        <div id="Current-Weather" >
+        <div id="Current-Weather">
             <div className="header">
                 <div className="location">
-                    <h4 >{state.name} - {state.sys.country}</h4>
+                    <h4>{state.name} - {state.sys.country}</h4>
+                </div>
+                <div className="title">
+                    <h4>Current Weather</h4>
                 </div>
                 <div className="updated">
                     <Updater updater={getCurrentWeather} timeStamp={state.timeStamp}/>
@@ -50,12 +53,13 @@ const CurrentWeather: React.FC<IProps> = ({location, API_KEY}) => {
 
             </div>
             <div className="body">
-
                 <Temperature temp={state.main.temp} temp_min={state.main.temp_min} temp_max={state.main.temp_max}/>
-                <CurrentStatus sunrise={state.sys.sunrise} sunset={state.sys.sunset} icon={state.weather[0].icon} description={state.weather[0].description}/>
-                <Wind humidity={state.main.humidity} pressure={state.main.pressure} speed={state.wind.speed} deg={state.wind.deg}/>
-                {state.rain && <Rain rain={state.rain}/>}
-                {state.snow && <Snow snow={state.rain}/>}
+                <CurrentStatus sunrise={state.sys.sunrise} sunset={state.sys.sunset} icon={state.weather[0].icon}
+                               description={state.weather[0].description}/>
+                <Wind humidity={state.main.humidity} pressure={state.main.pressure} speed={state.wind.speed}
+                      deg={state.wind.deg}/>
+                {state.rain && (state.rain["1h"] || state.rain["3h"]) && <Rain rain={state.rain}/>}
+                {state.snow && (state.snow["1h"] || state.snow["3h"]) && <Snow snow={state.rain}/>}
             </div>
         </div>
     )
